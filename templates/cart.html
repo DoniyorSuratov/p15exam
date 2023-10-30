@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/fontawesome/css/all.min.css' %}">
+	<link rel="stylesheet" href="{% static 'vendors/themify-icons/themify-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/nice-select/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/nouislider/nouislider.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+ {% block title %}ZARA - Cart{% endblock %}
+
+{% block content %}
+	<!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Shopping Cart</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+	<!-- ================ end banner area ================= -->
+  
+  
+
+  <!--================Cart Area =================-->
+  <section class="cart_area">
+      <div class="container">
+          <div class="cart_inner">
+              <div class="table-responsive">
+                  <table class="table">
+                      <thead>
+
+                          <tr>
+                              <th scope="col">Product</th>
+                              <th scope="col">Date</th>
+                              <th scope="col">Quantity</th>
+                              <th></th>
+                              <th scope="col">Delate</th>
+                          </tr>
+                      </thead>
+                          {% for product in shopping_cart_products %}
+                      <tbody>
+                          <tr>
+
+                              <td>
+                                  <div>
+
+                                  </div>
+                                  <div class="media">
+                                      <div class="d-flex">
+
+                                          <span>{{ product.id }}</span>
+
+                                      </div>
+                                      <div class="media-body">
+                                          <p>{{ product.text }}</p>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <h5>{{ product.exp_at.date }}</h5>
+                              </td>
+                               <td>
+                                  <h5>{{ product.count }}</h5>
+                              </td>
+
+                               <td>
+                                  <h5>{{ product.name }}</h5>
+                              </td>
+
+
+
+
+                                   <td>
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="shopping_cart_id" value="{{ product.id }}">
+                                            <button href="#"  class="btn btn-primary btn-sm">X</button>
+                                        </form>
+                                   </td>
+                          </tr>
+                          {% endfor %}
+
+                          <tr class="bottom_button">
+                              <td>
+                                  <a class="button" href="/cart">Update Cart</a>
+                              </td>
+                              <td>
+
+                              </td>
+                              <td>
+
+                              </td>
+                              <td>
+                                  <div class="cupon_text d-flex align-items-center">
+                                      <input type="text" placeholder="Coupon Code">
+{#                                  {% for product in shopping_cart_products %}#}
+{#                                      {% if product.id %}#}
+                                      <a class="primary-btn" href="/checkout">Apply</a>
+{#                                      {% endif %}#}
+{#                                  {% endfor %}#}
+                                      <a class="button" href="#">Have a Coupon?</a>
+                                  </div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+
+                              </td>
+                              <td>
+
+                              </td>
+
+                              <td>
+                                  <h5>Subtotal</h5>
+                              </td>
+
+                              <td>
+                                {{ summa }}
+                              </td>
+
+                          </tr>
+
+                              <td>
+                                  <div class="checkout_btn_inner d-flex align-items-center">
+                                      <a class="gray_btn" href="/category">Continue Shopping</a>
+
+                                  </div>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--================End Cart Area =================-->
+
+
+
+ {% endblock %}
+
+
+{% block js %}
+  <script src="{% static 'vendors/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendors/skrollr.min.js' %}"></script>
+  <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'vendors/nice-select/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'vendors/jquery.ajaxchimp.min.js' %}"></script>
+  <script src="{% static 'vendors/mail-script.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

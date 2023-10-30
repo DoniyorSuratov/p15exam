@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  {% block title%}ZARA - Todo{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/fontawesome/css/all.min.css' %}">
+	<link rel="stylesheet" href="{% static 'vendors/themify-icons/themify-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/nice-select/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/nouislider/nouislider.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+	<!--================ Start Header Menu Area =================-->
+
+{% block content %}
+
+    <form method="post">
+    {% csrf_token %}
+
+        <h3>Enter your product name<input type="text" name="text"></h3>
+        <h3>Enter count<input type="number" name="count"></h3>
+        <h3>Submit <button type="submit"></button></h3>
+
+    </form>
+
+
+
+{% endblock %}
+
+
+{% block js %}
+  <script src="{% static 'vendors/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendors/skrollr.min.js' %}"></script>
+  <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'vendors/nice-select/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'vendors/jquery.ajaxchimp.min.js' %}"></script>
+  <script src="{% static 'vendors/mail-script.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
